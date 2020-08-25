@@ -61,7 +61,6 @@ namespace ADT_PnP_Map_Demo_Function
                                 if (opValue.Equals("replace"))
                                 {
                                     string propertyPath = ((string)operation["path"]);
-                                    log.LogInformation($"====> propertyPath {propertyPath}");
                                     if (propertyPath.Equals("/Temperature") || (propertyPath.Equals("/HumidityLevel")))
                                     {
                                         await AdtUtilities.UpdateTwinPropertyAsync(client, parentId, propertyPath, operation["value"].Value<float>(), log);
@@ -69,7 +68,6 @@ namespace ADT_PnP_Map_Demo_Function
                                 }
                             }
                         }
-
                     }
                 }
                 catch (Exception e)

@@ -29,9 +29,12 @@ namespace ADT_PnP_Map_Demo_Function
                 //Replace this line with your logic for retrieving featureID. 
                 string featureID = "UNIT56"; // room 136
 
+                log.LogInformation("Found Space;2 Model");
+
                 //Iterate through the properties that have changed
                 foreach (var operation in message["data"]["patch"])
                 {
+                    log.LogInformation($"====> Operation {operation}");
                     if (operation["op"].ToString() == "replace" && operation["path"].ToString() == "/Temperature")
                     {   //Update the maps feature stateset
                         var postcontent = new JObject(new JProperty("States", new JArray(
