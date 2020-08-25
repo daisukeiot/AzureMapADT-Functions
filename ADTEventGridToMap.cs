@@ -20,7 +20,7 @@ namespace ADT_PnP_Map_Demo_Function
         public static async Task Run([EventGridTrigger] EventGridEvent eventGridEvent, ILogger log)
         {
             JObject message = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
-            log.LogInformation("Reading event from twinID:" + eventGridEvent.Subject.ToString() + ": " +
+            log.LogInformation("ADTEventGridToMap Reading event from twinID:" + eventGridEvent.Subject.ToString() + ": " +
                 eventGridEvent.EventType.ToString() + ": " + message["data"]);
 
             //Parse updates to "space" twins

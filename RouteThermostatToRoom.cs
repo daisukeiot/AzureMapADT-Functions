@@ -48,7 +48,7 @@ namespace ADT_PnP_Map_Demo_Function
                         string twinId = eventGridEvent.Subject.ToString();
                         JObject message = (JObject)JsonConvert.DeserializeObject(eventGridEvent.Data.ToString());
 
-                        log.LogInformation($"Reading event from {twinId}: {eventGridEvent.EventType}: {message["data"]}");
+                        //log.LogInformation($"Reading event from {twinId}: {eventGridEvent.EventType}: {message["data"]}");
 
                         //Find and update parent Twin
                         string parentId = await AdtUtilities.FindParentAsync(client, twinId, "contains", log);
