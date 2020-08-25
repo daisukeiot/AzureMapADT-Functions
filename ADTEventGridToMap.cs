@@ -29,7 +29,7 @@ namespace ADT_PnP_Map_Demo_Function
                 //Replace this line with your logic for retrieving featureID. 
                 string featureID = "UNIT56"; // room 136
 
-                log.LogInformation("Found Space;2 Model");
+                log.LogInformation("======= Found Space;2 Model");
 
                 //Iterate through the properties that have changed
                 foreach (var operation in message["data"]["patch"])
@@ -48,7 +48,8 @@ namespace ADT_PnP_Map_Demo_Function
                             $"https://atlas.microsoft.com/featureState/state?api-version=1.0&statesetID={statesetID}&featureID={featureID}&subscription-key={subscriptionKey}",
                             new StringContent(postcontent.ToString()));
 
-                        log.LogInformation(await response.Content.ReadAsStringAsync());
+                        var resp = await response.Content.ReadAsStringAsync();
+                        log.LogInformation($"==== Resp {resp}");
                     }
                 }
             }

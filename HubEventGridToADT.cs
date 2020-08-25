@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Azure.Core.Pipeline;
 using Azure.DigitalTwins.Core;
 using Azure.DigitalTwins.Core.Serialization;
@@ -19,7 +20,7 @@ namespace ADT_PnP_Map_Demo_Function
         private static readonly HttpClient httpClient = new HttpClient();
 
         [FunctionName("IoTHub2ADT_Processor")]
-        public async void Run([EventGridTrigger] EventGridEvent eventGridEvent, ILogger log)
+        public async Task Run([EventGridTrigger] EventGridEvent eventGridEvent, ILogger log)
         {
             // After this is deployed, you need to turn the Managed Identity Status to "On",
             // Grab Object Id of the function and assigned "Azure Digital Twins Owner (Preview)" role
