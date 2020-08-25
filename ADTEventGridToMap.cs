@@ -24,6 +24,8 @@ namespace ADT_PnP_Map_Demo_Function
                 eventGridEvent.EventType.ToString() + ": " + message["data"]);
 
             //Parse updates to "space" twins
+
+            log.LogInformation($"====> Model Id : {message["data"]["modelId"].ToString()}");
             if (message["data"]["modelId"].ToString() == "dtmi:iotpnpadt:DigitalTwins:Space;2")
             {   //Set the ID of the room to be updated in your map. 
                 //Replace this line with your logic for retrieving featureID. 
