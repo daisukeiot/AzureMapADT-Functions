@@ -22,17 +22,16 @@ namespace ADT_PnP_Map_Demo_Function
         [FunctionName("RouteThermostatToRoom")]
         public static async Task Run([EventGridTrigger] EventGridEvent eventGridEvent, ILogger log)
         {
-            log.LogInformation("Start execution");
             // After this is deployed, you need to turn the Identity Status "On", 
             // Grab Object Id of the function and assigned "Azure Digital Twins Owner (Preview)" role to this function identity
             // in order for this function to be authorize on ADT APIs.
 
             DigitalTwinsClient client;
+
             try
             {
                 ManagedIdentityCredential cred = new ManagedIdentityCredential(adtAppId);
                 client = new DigitalTwinsClient(new Uri(adtInstanceUrl), cred, new DigitalTwinsClientOptions { Transport = new HttpClientTransport(httpClient) });
-                log.LogInformation("ADT service client connection created.");
             }
             catch (Exception e)
             {
@@ -62,7 +61,7 @@ namespace ADT_PnP_Map_Demo_Function
                                 if (opValue.Equals("replace"))
                                 {
                                     string propertyPath = ((string)operation["path"]);
-
+                                    log.LogInformation($"====> propertyPath {propertyPath}");
                                     if (propertyPath.Equals("/Temperature") || (propertyPath.Equals("/HumidityLevel"))
                                     {
                                         await AdtUtilities.UpdateTwinPropertyAsync(client, parentId, propertyPath, operation["value"].Value<float>(), log);

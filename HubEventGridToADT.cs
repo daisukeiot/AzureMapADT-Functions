@@ -35,8 +35,6 @@ namespace ADT_PnP_Map_Demo_Function
                                                                    new DigitalTwinsClientOptions
                                                                        { Transport = new HttpClientTransport(httpClient) });
 
-                log.LogInformation($"ADT service client connection created.");
-
                 if (eventGridEvent != null && eventGridEvent.Data != null)
                 {
                     log.LogInformation(eventGridEvent.Data.ToString());
@@ -46,12 +44,13 @@ namespace ADT_PnP_Map_Demo_Function
                     var body_value = System.Text.ASCIIEncoding.ASCII.GetString(body_byte);
                     var body_json = (JObject)JsonConvert.DeserializeObject(body_value);
 
-                    log.LogInformation($"Body {body_json}");
+                    //log.LogInformation($"Body {body_json}");
 
                     log.LogInformation(deviceMessage.ToString());
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                     var temperature = body_json["temperature_hts221"];
                     var humidity = body_json["humidity"];
+
                     log.LogInformation($"Device:{deviceId} Temperature is:{temperature} Humidity is:{humidity}");
 
                     //Update twin using device temperature
