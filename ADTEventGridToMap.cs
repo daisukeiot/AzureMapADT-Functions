@@ -27,7 +27,7 @@ namespace ADT_PnP_Map_Demo_Function
             if (message["data"]["modelId"].ToString() == "dtmi:contosocom:DigitalTwins:Space;1")
             {   //Set the ID of the room to be updated in your map. 
                 //Replace this line with your logic for retrieving featureID. 
-                string featureID = "UNIT68";
+                string featureID = "UNIT"; // room 136
 
                 //Iterate through the properties that have changed
                 foreach (var operation in message["data"]["patch"])
