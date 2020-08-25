@@ -53,6 +53,10 @@ namespace ADT_PnP_Map_Demo_Function
                     }
                 }
             }
+            else
+            {
+                log.LogInformation("!!!!!!!! Not Space;2 model");
+            }
         }
     }
 }
