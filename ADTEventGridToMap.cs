@@ -39,6 +39,8 @@ namespace ADT_PnP_Map_Demo_Function
                                  new JProperty("value", operation["value"].ToString()),
                                  new JProperty("eventTimestamp", DateTime.Now.ToString("s"))))));
 
+                        log.LogInformation($"Sending to Map....{postcontent.ToString()}");
+
                         var response = await httpClient.PostAsync(
                             $"https://atlas.microsoft.com/featureState/state?api-version=1.0&statesetID={statesetID}&featureID={featureID}&subscription-key={subscriptionKey}",
                             new StringContent(postcontent.ToString()));
