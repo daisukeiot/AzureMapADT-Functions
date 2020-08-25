@@ -51,12 +51,13 @@ namespace ADT_PnP_Map_Demo_Function
                     log.LogInformation(deviceMessage.ToString());
                     string deviceId = (string)deviceMessage["systemProperties"]["iothub-connection-device-id"];
                     var temperature = body_json["temperature_hts221"];
-
-                    log.LogInformation($"Device:{deviceId} Temperature is:{temperature}");
+                    var humidity = body_json["humidity"];
+                    log.LogInformation($"Device:{deviceId} Temperature is:{temperature} Humidity is:{humidity}");
 
                     //Update twin using device temperature
                     var uou = new UpdateOperationsUtility();
                     uou.AppendReplaceOp("/Temperature", temperature.Value<double>());
+                    uou.AppendReplaceOp("/HumidityLevel", humidity.Value<double>());
                     await client.UpdateDigitalTwinAsync(deviceId, uou.Serialize());
                 }
             }
